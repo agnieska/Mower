@@ -1,5 +1,9 @@
 package com.simplon.mower;
 
+import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 /**
  * Created by Agnieszka on 16/02/17.
  */
@@ -44,6 +48,10 @@ public class Main {
             System.out.println(mover2.positionActuelle.toString() );
 
         }
+
+
+
+
 
 
 

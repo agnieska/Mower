@@ -12,10 +12,22 @@ Position positionActuelle;
 
 
     public Mower(int x, int y, Orientation o) {
+
         positionActuelle = new Position (x,y,o);
     }
 
-
+    public Mower(String string) {
+        int x = Character.getNumericValue(string.charAt(0));
+        int y = Character.getNumericValue(string.charAt(1));
+        Orientation o = Orientation.readOrientation(string.charAt(2));
+        this.positionActuelle = new Position (x,y,o);
+    }
+    public Mower(String[] string) {
+        int x=Integer.parseInt(string[0]);
+        int  y= Integer.parseInt(string[1]);
+        Orientation o = Orientation.readOrientation(string[2].charAt(0));
+        this.positionActuelle = new Position (x,y,o);
+    }
 
     public Position turnLeft() {
 
@@ -69,11 +81,40 @@ Position positionActuelle;
                 this.positionActuelle.setX(x+1);
         }
         return this.positionActuelle;
-
-
-
     }
 
+    public String moveMower ( Lawn lawn, String instr) {
 
+        for (int i = 0; i < instr.length(); i++) {
+            char command = instr.charAt(i);
+            switch (command) {
+                case 'F':
+                    this.goForward(lawn);
+                case 'L':
+                    this.turnLeft();
+                case 'R':
+                    this.turnRight();
+            }
 
-}
+        }
+        return this.positionActuelle.toString();
+    }
+
+    public String moveMower ( Lawn lawn, String[] instr) {
+
+        for (int i = 0; i < instr.length; i++) {
+            char command = instr[i].charAt(0);
+            switch (command) {
+                case 'F':
+                    this.goForward(lawn);
+                case 'L':
+                    this.turnLeft();
+                case 'R':
+                    this.turnRight();
+            }
+
+        }
+        return this.positionActuelle.toString();
+    }
+
+} // class
