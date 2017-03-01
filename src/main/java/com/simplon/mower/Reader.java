@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Reader {
 
 
-    private ArrayList<String[]> readFileBySplitString() {
+    public ArrayList<String[]> readFileBySplitString(String fileName) {
 
         ArrayList<String[]> lines = new ArrayList<String[]>();
         try {
@@ -29,57 +29,36 @@ public class Reader {
     }
 
 
-    private ArrayList<String> readFileByStrings() {
+    public ArrayList<String> readFile(String fileName) {
 
-        ArrayList<String> lines = new ArrayList<String>();
+        ArrayList<String> tableOfLines = new ArrayList<String>();
         try {
             BufferedReader file = new BufferedReader(new FileReader("Instruction.txt"));
             String line;
             while ((line = file.readLine()) != null) {
-                lines.add(line);
+                tableOfLines.add(line);
             }
             file.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return lines;
+        return tableOfLines;
     }
 
 
-    private String executeMoverOneByOne (ArrayList<String> lines) {
+    public String executeMowersOneByOne (ArrayList<String> tableOfLines) {
 
         String result="";
 
-        Lawn lawn = new Lawn(lines.get(0));
-        for (int i=1; i<(lines.size()-1); i=i+2){
-            Mower mower = new Mower(lines.get(i));
-            result = result + mower.moveMower(lawn, lines.get(i+1));
+        Lawn lawn = new Lawn(tableOfLines.get(0));
+        for (int i=1; i<(tableOfLines.size()-1); i=i+2){
+            Mower mower = new Mower(tableOfLines.get(i));
+            mower = mower.moveMower(lawn, tableOfLines.get(i+1));
+            result = result + mower.getPositionActuelle().toString();
         }
         return result;
 
     }
-
-
-
-
-/*
-//float f = Float.parseFloat(line[0]);
-int x = getNumericValue(line[0]);
-String[] lines = readAll.split("\n");
-                String[] readLawn = lines[0].split("");
-                String[] readMower1 = lines[1].split("");
-                String[] readInstr1 = lines[2].split("");
-                String[] readMower2 = lines[3].split("");
-                String[] readInstr2 = lines[4].split("");
-     int x = Character.getNumericValue(line.charAt(0));
-     int y = Character.getNumericValue(line.charAt(1));
-     Orientation o = Orientation.readOrientation(line.charAt(2));
-     Mower mower = new Mower(x,y,o);
- */
-
-
-
-
 
 
 

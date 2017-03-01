@@ -1,5 +1,7 @@
 package com.simplon.mower;
 
+import java.util.Objects;
+
 /**
  * Created by Agnieszka on 16/02/17.
  */
@@ -11,9 +13,9 @@ public class Position {
 
 
     public Position(int x, int y, Orientation o) {
-        x = x;
-        y = y;
-        o = o;
+        this.x = x;
+        this.y = y;
+        this.o = o;
     }
 
 
@@ -45,5 +47,20 @@ public class Position {
     public String toString() {
         String st = (""+x+y+o+"\n");
         return st;
+    }
+
+    @Override
+    public boolean equals(Object o1) {
+        if (this == o1) return true;
+        if (o1 == null || getClass() != o1.getClass()) return false;
+        Position position = (Position) o1;
+        return getX() == position.getX() &&
+                getY() == position.getY() &&
+                getO() == position.getO();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getX(), getY(), getO());
     }
 }

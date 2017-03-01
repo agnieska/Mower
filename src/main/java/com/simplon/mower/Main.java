@@ -10,42 +10,61 @@ import java.io.FileReader;
 public class Main {
 
 
-    public  static void main( String[] args )
+    public  static void main ( String[] args )
         {
             System.out.println( "Hello World!" );
 
 
             Lawn lawn = new Lawn(5,5);
+            Position position1 = new Position (1,2,Orientation.NORTH);
+            Mower mower1= new Mower(position1);
+
+           // Mower mower1 = new Mower (1,2,Orientation.NORTH);
+
+            mower1.turnLeft();
+            mower1.goForward(lawn);
+            mower1.turnLeft();
+            mower1.goForward(lawn);
+            mower1.turnLeft();
+            mower1.goForward(lawn);
+            mower1.turnLeft();
+            mower1.goForward(lawn);
+            mower1.goForward(lawn);
+
+            System.out.println(mower1.getPositionActuelle().toString() );
+
+           // Mower mower2 = new Mower (3,3,Orientation.EST);
+            Position position2 = new Position (3,3,Orientation.EST);
+            Mower mower2= new Mower(position2);
+
+            mower2.goForward(lawn);
+            mower2.goForward(lawn);
+            mower2.turnRight();
+            mower2.goForward(lawn);
+            mower2.goForward(lawn);
+            mower2.turnRight();
+            mower2.goForward(lawn);
+            mower2.goForward(lawn);
+            mower2.turnRight();
+            mower2.goForward(lawn);
+
+            System.out.println(mower2.getPositionActuelle().toString() );
 
 
-            Mower mover1 = new Mower (1,2,Orientation.NORTH);
+            Reader reader = new Reader();
+            ArrayList<String> tableOfLines = new ArrayList<String>();
+            tableOfLines.add("55");
+            tableOfLines.add("FF");
+            tableOfLines.add("RF");
 
-            mover1.turnLeft();
-            mover1.goForward(lawn);
-            mover1.turnLeft();
-            mover1.goForward(lawn);
-            mover1.turnLeft();
-            mover1.goForward(lawn);
-            mover1.turnLeft();
-            mover1.goForward(lawn);
-            mover1.goForward(lawn);
+            System.out.println(reader.executeMowersOneByOne(tableOfLines));
 
-            System.out.println(mover1.positionActuelle.toString() );
 
-            Mower mover2 = new Mower (3,3,Orientation.EST);
-
-            mover2.goForward(lawn);
-            mover2.goForward(lawn);
-            mover2.turnRight();
-            mover2.goForward(lawn);
-            mover2.goForward(lawn);
-            mover2.turnRight();
-            mover2.goForward(lawn);
-            mover2.goForward(lawn);
-            mover2.turnRight();
-            mover2.goForward(lawn);
-
-            System.out.println(mover2.positionActuelle.toString() );
+            /*
+            Reader reader = new Reader();
+           ArrayList<String> tableOfLines = reader.readFile("Instruction.txt");
+           reader.executeMowersOneByOne(tableOfLines);
+            */
 
         }
 

@@ -5,7 +5,7 @@ package com.simplon.mower;
  */
 public enum Orientation {
 
-    INCONNUE("I"),
+    UNKNOWN("Inconnu"),
     NORTH("N"),
     SOUTH ("S"),
     EST ("E"),
@@ -33,17 +33,19 @@ public enum Orientation {
     }
 
     public static Orientation readOrientation(char c) {
-        Orientation o= Orientation.INCONNUE;
+
         switch (c){
             case 'N':
-                o=Orientation.NORTH; break;
+                return Orientation.NORTH;
             case 'S':
-                o=Orientation.SOUTH; break;
+                return Orientation.SOUTH;
             case 'E':
-                o=Orientation.EST;   break;
+                 return Orientation.EST;
             case 'W':
-                o=Orientation.WEST;  break;
+                return Orientation.WEST;
+            default :
+                return Orientation.UNKNOWN;
         }
-        return o;
+
     }
 }
